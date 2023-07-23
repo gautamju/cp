@@ -1,3 +1,20 @@
+/*
+problem link: https://codeforces.com/gym/100571/problem/B
+f(i) = a*f(i-2) + b*f(i-1);
+---> calculate f(i) from 1 to n+1, f(0) = 0
+---> think about how can we add f(1) and f(2) to p(l) and p(l+1)
+---> think about how can we remove weight of this from p(r+1) and p(r+2)
+if during calculation we do p(i) = a*p(i-2) + b*p(i-1);
+=> p(l) = p(l) + f(1);
+=> p(l+1) = p(l+1) + f(2);
+so here we can simply see that if we do p(l+1) = p(l+1) + a*p(l-1) + b*p(l) 
+then as p(l-1) is having zero impact whereas p(l) is having impact of b*f(1)
+so we can write p(l+1) = p(l+1) - b*f(1);
+similarly as p(r+1) = p(r+1) + a*p(r-1) + b*p(r), total impact will be f(r+1);
+so p(r+1) = p(r+1) - f(r+1);
+similarly p(r+2) = p(r+2) + a*p(r) + b*p(r+1), as b*p(r+1) will be having zero impact
+so p(r+2) = p(r+2) - a*p(r);
+*/
 #include<bits/stdc++.h>
 using namespace std;
 #define int long long
